@@ -80,7 +80,8 @@ export default {
 					for (const video of data.items) {
 						const videoId = video.id;
 						const title = video.snippet.title;
-						const isLive = !!video.liveStreamingDetails;
+						const isLive =
+							video.liveStreamingDetails !== undefined && video.snippet.publishedAt !== video.liveStreamingDetails.actualStartTime;
 						const views = parseInt(video.statistics.viewCount);
 						const publishedAt = new Date(video.snippet.publishedAt).getTime();
 						const channelName = video.snippet.channelTitle;

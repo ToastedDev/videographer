@@ -3,6 +3,9 @@ name = "videographer"
 main = "src/index.ts"
 compatibility_date = "2024-09-19"
 compatibility_flags = ["nodejs_compat"]
+routes = [
+	{ pattern = "videos.toasted.dev", custom_domain = true }
+]
 
 [[d1_databases]]
 binding = "DB" # i.e. available in your Worker on env.DB
