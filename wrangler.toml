@@ -8,3 +8,6 @@ compatibility_flags = ["nodejs_compat"]
 binding = "DB" # i.e. available in your Worker on env.DB
 database_name = "videographer-db"
 database_id = "2d9e8575-eac3-4205-8adb-d26618169344"
+
+[triggers]
+crons = ["0 * * * *"]
