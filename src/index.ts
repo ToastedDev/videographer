@@ -29,16 +29,30 @@ export default {
 		const url = new URL(request.url);
 		if (url.pathname === '/videos') {
 			const { DB: db } = env;
-			const result = await db.prepare('SELECT * FROM videos').all<Video>();
-			return Response.json({
-				videos: result.results
-					.sort((a, b) => b.published_at - a.published_at)
-					.map((video) => {
-						video.is_live = !!video.is_live as any;
-						video.is_spotlight = !!video.is_spotlight as any;
-						return video;
-					}),
-			});
+			const channel = url.searchParams.get('channel');
+			if (channel) {
+				const result = await db.prepare('SELECT * FROM videos WHERE channel_name LIKE ?').bind(`%${channel}%`).all<Video>();
+				return Response.json({
+					videos: result.results
+						.sort((a, b) => b.published_at - a.published_at)
+						.map((video) => {
+							video.is_live = !!video.is_live as any;
+							video.is_spotlight = !!video.is_spotlight as any;
+							return video;
+						}),
+				});
+			} else {
+				const result = await db.prepare('SELECT * FROM videos').all<Video>();
+				return Response.json({
+					videos: result.results
+						.sort((a, b) => b.published_at - a.published_at)
+						.map((video) => {
+							video.is_live = !!video.is_live as any;
+							video.is_spotlight = !!video.is_spotlight as any;
+							return video;
+						}),
+				});
+			}
 		}
 		return new Response(null, { status: 404 });
 	},
