@@ -60,7 +60,7 @@ export default {
 		// TODO: protect this endpoint
 		const url = new URL(request.url);
 		if (url.pathname === '/fetch-videos' && request.method === 'POST') {
-			fetchVideos(env);
+			await fetchVideos(env);
 			return new Response('OK');
 		}
 		return new Response('Hello World!');
