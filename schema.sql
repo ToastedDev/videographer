@@ -7,5 +7,5 @@ CREATE TABLE videos (
 	is_live BOOLEAN NOT NULL,
 	views INTEGER NOT NULL DEFAULT 0,
 	published_at INTEGER NOT NULL,
-	channel_name TEXT NOT NULL,
+	channel_name TEXT NOT NULL
 );
