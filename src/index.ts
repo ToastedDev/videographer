@@ -44,7 +44,7 @@ async function fetchVideos(env: Env) {
 
 					await db
 						.prepare(
-							'INSERT INTO videos (id, title, is_live, views, published_at, channel_name) VALUES (?, ?, ?, ?, ?, ?, ?) ON CONFLICT (id) DO UPDATE SET title = ?, views = ?',
+							'INSERT INTO videos (id, title, is_live, views, published_at, channel_name) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT (id) DO UPDATE SET title = ?, views = ?',
 						)
 						.bind(videoId, title, isLive, views, publishedAt, channelName, title, views)
 						.run();
