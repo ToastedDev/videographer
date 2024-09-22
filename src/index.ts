@@ -41,13 +41,12 @@ async function fetchVideos(env: Env) {
 					const views = parseInt(video.statistics.viewCount);
 					const publishedAt = new Date(video.snippet.publishedAt).getTime();
 					const channelName = video.snippet.channelTitle;
-					const channelUrl = video.snippet.channelId;
 
 					await db
 						.prepare(
-							'INSERT INTO videos (id, title, is_live, views, published_at, channel_name, channel_url) VALUES (?, ?, ?, ?, ?, ?, ?) ON CONFLICT (id) DO UPDATE SET title = ?, views = ?',
+							'INSERT INTO videos (id, title, is_live, views, published_at, channel_name) VALUES (?, ?, ?, ?, ?, ?, ?) ON CONFLICT (id) DO UPDATE SET title = ?, views = ?',
 						)
-						.bind(videoId, title, isLive, views, publishedAt, channelName, channelUrl, title, views)
+						.bind(videoId, title, isLive, views, publishedAt, channelName, title, views)
 						.run();
 				}
 			}
