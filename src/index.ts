@@ -58,7 +58,8 @@ async function fetchVideos(env: Env) {
 export default {
 	async fetch(request, env) {
 		// TODO: protect this endpoint
-		if (request.url === '/fetch-videos' && request.method === 'POST') {
+		const url = new URL(request.url);
+		if (url.pathname === '/fetch-videos' && request.method === 'POST') {
 			await fetchVideos(env);
 			return new Response('OK');
 		}
