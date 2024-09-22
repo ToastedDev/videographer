@@ -7,14 +7,11 @@
 		"dev": "wrangler dev",
 		"start": "wrangler dev",
 		"test": "vitest",
-		"cf-typegen": "wrangler types",
 		"db:init": "wrangler d1 execute videographer-db --file=schema.sql"
 	},
 	"devDependencies": {
-		"@cloudflare/vitest-pool-workers": "^0.5.2",
 		"@cloudflare/workers-types": "^4.20240919.0",
 		"typescript": "^5.5.2",
-		"vitest": "2.0.5",
 		"wrangler": "^3.60.3"
 	}
 }
