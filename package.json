@@ -6,7 +6,7 @@
 		"deploy": "wrangler deploy",
 		"dev": "wrangler dev",
 		"start": "wrangler dev",
-		"test": "vitest",
+		"cf-typegen": "wranger types",
 		"db:init": "wrangler d1 execute videographer-db --file=schema.sql"
 	},
 	"devDependencies": {
